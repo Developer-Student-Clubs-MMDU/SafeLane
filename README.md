@@ -1,4 +1,4 @@
-# safelane
+# Safelane. - Travel Safe
 
 Flutter project for Google Solution Challenge 2022 developed by GDSC MM(DU)
 
