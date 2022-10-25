@@ -1,6 +1,12 @@
 # safelane
 
-A new Flutter project.
+Flutter project for Google Solution Challenge 2022 developed by GDSC MM(DU)
+
+## Team behind the project
+1. Sujal Garg (@sujal-garg) 
+2. Nishchay Bhuker (@Nishchaybhuker20)
+3. Aaditya Mishra (@Aaditya-Mishra)
+4. Saurav Kumar (@sauravkumar1812)
 
 ## Getting Started
 
