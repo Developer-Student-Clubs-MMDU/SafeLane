@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
@@ -33,7 +34,8 @@ int currentIndex=0;
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
     return Scaffold(
-      body: SafeArea(
+      body: 
+      SafeArea(
         child: Column(
           children: [
             Expanded(
@@ -62,11 +64,13 @@ int currentIndex=0;
               )
             ),
             const SizedBox(height: 40,),
+            
             SizedBox(
               height: 50,
               width: 220,
               child: ElevatedButton(
                   child: Text(currentIndex==demo_data.length-1 ? "Get Started>>": "Next>>"),
+                  
                   onPressed: (){
                     if(currentIndex==demo_data.length-1){
                       Navigator.pushReplacement(context, MaterialPageRoute(builder: (_)=>loginScreen()),

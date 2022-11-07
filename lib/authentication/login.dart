@@ -1,3 +1,7 @@
+import 'dart:ffi';
+import 'dart:html';
+
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -8,7 +12,15 @@ import 'package:safelane/authentication/signup.dart';
 import 'package:safelane/tabs/home.dart';
 
 class loginScreen extends StatelessWidget {
-  const loginScreen({Key? key}) : super(key: key);
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  // const loginScreen({Key? key}) : super(key: key);
+   
+  @override
+  void dispose() {
+    emailController.dispose();
+    passwordController.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,6 +45,7 @@ class loginScreen extends StatelessWidget {
             ),
             TextFieldContainer(
               child: TextField(
+                controller: emailController,
                   decoration: InputDecoration(
                 suffixIcon: Icon(Icons.mail),
                 hintText: "Enter your email",
@@ -41,6 +54,7 @@ class loginScreen extends StatelessWidget {
             ),
             TextFieldContainer(
               child: TextField(
+                controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.lock),
@@ -58,7 +72,10 @@ class loginScreen extends StatelessWidget {
                 children: [
                   TextButton(
                     onPressed: () {
-                      Navigator.push(context, MaterialPageRoute(builder: (_)=>forgotPassword()),);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => forgotPassword()),
+                      );
                     },
                     child: Text("Forgot Password?"),
                   ),
@@ -67,7 +84,10 @@ class loginScreen extends StatelessWidget {
                       primary: Colors.black,
                     ),
                     onPressed: () {
-      Navigator.push(context, MaterialPageRoute(builder: (_)=>HomePage()),);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => HomePage()),
+                      );
                     },
                     child: Text("Get in"),
                   )
@@ -132,24 +152,31 @@ class loginScreen extends StatelessWidget {
               ],
             ),
             SizedBox(
-                height: 35,
-              ),
+              height: 35,
+            ),
             Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text("Already have an account ? "),
-                      TextButton(
-                        onPressed: () {
-                          Navigator.push(context, MaterialPageRoute(builder: (_)=>signUp()),);
-                        },
-                        child: Text("Sign Up")
-                      )
-                    ],
-                  )
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: [
+                Text("Already have an account ? "),
+                TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (_) => signUp()),
+                      );
+                    },
+                    child: Text("Sign Up"))
+              ],
+            )
           ],
         ),
       ),
     ));
   }
-}
 
+  Future signIn() async {
+    await FirebaseAuth.instance.signInWithEmailAndPassword(
+        email: emailController.text.trim(),
+        password: passwordController.text.trim());
+  }
+}

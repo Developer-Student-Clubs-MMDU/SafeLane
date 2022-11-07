@@ -1,0 +1,38 @@
+  "project_info": {
+    "project_number": "495561151819",
+    "project_id": "safelane-e5510",
+    "storage_bucket": "safelane-e5510.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:495561151819:android:ae3f00f2b012eb392284ce",
+        "android_client_info": {
+          "package_name": "com.example.safelane"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "495561151819-d45b4jbalug7r1ca6d6hag03ijgt2lsi.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCGuyXMLrS1ump3BPyidBWhaJMfbCFpOqw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "495561151819-d45b4jbalug7r1ca6d6hag03ijgt2lsi.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
