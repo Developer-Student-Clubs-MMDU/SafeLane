@@ -12,19 +12,38 @@ import 'package:safelane/authentication/signup.dart';
 import 'package:safelane/tabs/home.dart';
 
 class loginScreen extends StatelessWidget {
-  final emailController = TextEditingController();
-  final passwordController = TextEditingController();
-  // const loginScreen({Key? key}) : super(key: key);
+  
+  const loginScreen({Key? key}) : super(key: key);
    
   @override
-  void dispose() {
-    emailController.dispose();
-    passwordController.dispose();
-  }
+  
+  // void dispose() {
+  //   emailController.dispose();
+  //   passwordController.dispose();
+  // }
 
   @override
   Widget build(BuildContext context) {
     Size size = MediaQuery.of(context).size;
+    final emailController = TextEditingController();
+    final passwordController = TextEditingController();
+    Future signIn() async {
+      print("Sign in function ${emailController.text.trim()} ");
+    
+      try {
+        await FirebaseAuth.instance
+            .signInWithEmailAndPassword(
+                email: emailController.text.trim(),
+                password: passwordController.text.trim())
+            .then((value) => {
+                  print("value"),
+             
+                });
+      } on FirebaseAuthException catch (err) {
+        print(err);
+      }
+    }
+
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -174,9 +193,4 @@ class loginScreen extends StatelessWidget {
     ));
   }
 
-  Future signIn() async {
-    await FirebaseAuth.instance.signInWithEmailAndPassword(
-        email: emailController.text.trim(),
-        password: passwordController.text.trim());
-  }
 }
