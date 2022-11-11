@@ -1,12 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:safelane/authentication/otp_verify.dart';
 import 'package:safelane/cards/myContribution.dart';
 import 'package:safelane/tabs/componentshome/draggableItems.dart';
 import 'package:safelane/tabs/contribute.dart';
 import 'package:safelane/tabs/profile.dart';
 
-import '../authentication/fogotpassword.dart';
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
