@@ -125,16 +125,17 @@ class contribute extends StatelessWidget {
                     )
                   ],
                 ),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
                     OutlinedButton(
                       style: OutlinedButton.styleFrom(
-                        foregroundColor: Colors.black,
-                        elevation: 0,
-                        side: BorderSide(color: Colors.black)
-                      ),
+                          backgroundColor: Colors.black,
+                          elevation: 0,
+                          side: BorderSide(color: Colors.black)),
                       onPressed: () {},
                       child: Text("Cancel"),
                     ),

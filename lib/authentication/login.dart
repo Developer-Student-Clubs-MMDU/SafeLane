@@ -1,10 +1,5 @@
-import 'dart:ffi';
-import 'dart:html';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safelane/authentication/components/text_field.dart';
 import 'package:safelane/authentication/fogotpassword.dart';
@@ -12,38 +7,13 @@ import 'package:safelane/authentication/signup.dart';
 import 'package:safelane/tabs/home.dart';
 
 class loginScreen extends StatelessWidget {
-  
   const loginScreen({Key? key}) : super(key: key);
-   
-  @override
-  
-  // void dispose() {
-  //   emailController.dispose();
-  //   passwordController.dispose();
-  // }
 
   @override
   Widget build(BuildContext context) {
+    final _emailController = TextEditingController();
+    final _passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
-    final emailController = TextEditingController();
-    final passwordController = TextEditingController();
-    Future signIn() async {
-      print("Sign in function ${emailController.text.trim()} ");
-    
-      try {
-        await FirebaseAuth.instance
-            .signInWithEmailAndPassword(
-                email: emailController.text.trim(),
-                password: passwordController.text.trim())
-            .then((value) => {
-                  print("value"),
-             
-                });
-      } on FirebaseAuthException catch (err) {
-        print(err);
-      }
-    }
-
     return Scaffold(
         body: SafeArea(
       child: SingleChildScrollView(
@@ -64,16 +34,16 @@ class loginScreen extends StatelessWidget {
             ),
             TextFieldContainer(
               child: TextField(
-                controller: emailController,
+                  controller: _emailController,
                   decoration: InputDecoration(
-                suffixIcon: Icon(Icons.mail),
-                hintText: "Enter your email",
-                border: InputBorder.none,
-              )),
+                    suffixIcon: Icon(Icons.mail),
+                    hintText: "Enter your email",
+                    border: InputBorder.none,
+                  )),
             ),
             TextFieldContainer(
               child: TextField(
-                controller: passwordController,
+                  controller: _passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.lock),
@@ -103,10 +73,18 @@ class loginScreen extends StatelessWidget {
                       primary: Colors.black,
                     ),
                     onPressed: () {
-                      Navigator.push(
-                        context,
-                        MaterialPageRoute(builder: (_) => HomePage()),
-                      );
+                      FirebaseAuth.instance
+                          .signInWithEmailAndPassword(
+                              email: _emailController.text,
+                              password: _passwordController.text)
+                          .then((value) {
+                        Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => HomePage()));
+                      }).onError((error, stackTrace) {
+                        print("error.{$toString()}");
+                      });
                     },
                     child: Text("Get in"),
                   )
@@ -176,7 +154,7 @@ class loginScreen extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("Already have an account ? "),
+                Text("Create account"),
                 TextButton(
                     onPressed: () {
                       Navigator.push(
@@ -192,5 +170,4 @@ class loginScreen extends StatelessWidget {
       ),
     ));
   }
-
 }
