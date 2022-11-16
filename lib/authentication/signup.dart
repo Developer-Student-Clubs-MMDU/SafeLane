@@ -104,7 +104,7 @@ class signUp extends StatelessWidget {
                   },
                   child: Text("Sign Up"),
                   style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
+                      backgroundColor: Colors.black,
                       shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(10))),
                 ),

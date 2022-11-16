@@ -11,8 +11,10 @@ class loginScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _emailController = TextEditingController();
-    final _passwordController = TextEditingController();
+    FirebaseAuth firebaseAuth = FirebaseAuth.instance;
+    //DatabaseReference dbRef = FirebaseDatabase.instance.reference().child("Users");
+    TextEditingController emailController = TextEditingController();
+    TextEditingController passwordController = TextEditingController();
     Size size = MediaQuery.of(context).size;
     return Scaffold(
         body: SafeArea(
@@ -34,7 +36,7 @@ class loginScreen extends StatelessWidget {
             ),
             TextFieldContainer(
               child: TextField(
-                  controller: _emailController,
+                  controller: emailController,
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.mail),
                     hintText: "Enter your email",
@@ -43,7 +45,7 @@ class loginScreen extends StatelessWidget {
             ),
             TextFieldContainer(
               child: TextField(
-                  controller: _passwordController,
+                  controller: passwordController,
                   obscureText: true,
                   decoration: InputDecoration(
                     suffixIcon: Icon(Icons.lock),
@@ -70,20 +72,29 @@ class loginScreen extends StatelessWidget {
                   ),
                   ElevatedButton(
                     style: ElevatedButton.styleFrom(
-                      primary: Colors.black,
+                      backgroundColor: Colors.black,
                     ),
                     onPressed: () {
+                      final String email = emailController.text.trim();
+                      final String passwpord = passwordController.text.trim();
+
+                      if (email.isEmpty) {
+                        print("Enter Email");
+                      } else {
+                        print("Enter Password ");
+                      }
+
                       FirebaseAuth.instance
                           .signInWithEmailAndPassword(
-                              email: _emailController.text,
-                              password: _passwordController.text)
+                              email: emailController.text,
+                              password: passwordController.text)
                           .then((value) {
                         Navigator.push(
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
                       }).onError((error, stackTrace) {
-                        print("error.{$toString()}");
+                        
                       });
                     },
                     child: Text("Get in"),
@@ -162,7 +173,7 @@ class loginScreen extends StatelessWidget {
                         MaterialPageRoute(builder: (_) => signUp()),
                       );
                     },
-                    child: Text("Sign Up"))
+                    child: const Text("Sign Up"))
               ],
             )
           ],

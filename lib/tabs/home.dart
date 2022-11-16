@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     final screens = [
       home(size: size),
       contribute(),
-      profile(),
+      const profile(),
     ];
 
     return Scaffold(
@@ -256,7 +256,7 @@ class mystack extends StatelessWidget {
                         ),
                       ),
                       Text(
-                        "Aaditya Mishra",
+                        "Sujal Garg",
                         style: TextStyle(
                           fontSize: 20,
                         ),
