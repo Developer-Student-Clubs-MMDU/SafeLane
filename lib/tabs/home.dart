@@ -22,7 +22,7 @@ class _HomePageState extends State<HomePage> {
     final screens = [
       home(size: size),
       contribute(),
-      const profile(),
+      const Profile(),
     ];
 
     return Scaffold(

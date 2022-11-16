@@ -4,6 +4,7 @@ import 'package:safelane/authentication/login.dart';
 import 'package:safelane/onBoarding/onbording.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_native_splash/flutter_native_splash.dart';
+import 'package:safelane/tabs/home.dart';
 // import 'package:safelane/tabs/home.dart';
 import 'firebase_options.dart';
 
@@ -13,7 +14,7 @@ void main() async {
     options: DefaultFirebaseOptions.currentPlatform,
   );
   runApp(const MyApp());
-  // FlutterNativeSplash.remove();
+   FlutterNativeSplash.remove();
 }
 
 class MyApp extends StatelessWidget {
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
           textTheme: GoogleFonts.poppinsTextTheme(
             Theme.of(context).textTheme,
           )),
-      home: loginScreen(),
+      home: HomePage(),
     );
   }
 }
