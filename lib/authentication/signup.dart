@@ -1,3 +1,5 @@
+// ignore_for_file: unused_import
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:safelane/authentication/components/text_field.dart';
@@ -5,7 +7,6 @@ import 'package:safelane/authentication/login.dart';
 import 'package:safelane/tabs/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-// ignore: unused_import
 import 'package:firebase_core/firebase_core.dart';
 
 class signUp extends StatelessWidget {
@@ -13,9 +14,10 @@ class signUp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final _emailcontroller = TextEditingController();
-    final _passwordcontroller = TextEditingController();
-    final _confirmpasswordcontroller = TextEditingController();
+    final emailcontroller = TextEditingController();
+    final Name = TextEditingController();
+    final passwordcontroller = TextEditingController();
+    final confirmpasswordcontroller = TextEditingController();
 
     Size size = MediaQuery.of(context).size;
     return Scaffold(
@@ -38,6 +40,7 @@ class signUp extends StatelessWidget {
               ),
               TextFieldContainer(
                 child: TextField(
+                  controller: Name,
                     decoration: InputDecoration(
                   suffixIcon: Icon(Icons.person),
                   hintText: "Enter your Name",
@@ -46,7 +49,7 @@ class signUp extends StatelessWidget {
               ),
               TextFieldContainer(
                 child: TextField(
-                    controller: _emailcontroller,
+                    controller: emailcontroller,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.mail),
                       hintText: "Enter your email",
@@ -55,7 +58,7 @@ class signUp extends StatelessWidget {
               ),
               TextFieldContainer(
                 child: TextField(
-                    controller: _passwordcontroller,
+                    controller: passwordcontroller,
                     obscureText: true,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.lock),
@@ -65,7 +68,7 @@ class signUp extends StatelessWidget {
               ),
               TextFieldContainer(
                 child: TextField(
-                    controller: _confirmpasswordcontroller,
+                    controller: confirmpasswordcontroller,
                     obscureText: false,
                     decoration: InputDecoration(
                       suffixIcon: Icon(Icons.visibility_off),
@@ -83,17 +86,17 @@ class signUp extends StatelessWidget {
                   onPressed: () {
                     FirebaseAuth.instance
                         .createUserWithEmailAndPassword(
-                      email: _emailcontroller.text,
-                      password: _passwordcontroller.text,
+                      email: emailcontroller.text,
+                      password: passwordcontroller.text,
                     )
                         .then((value) async {
                       User? user = FirebaseAuth.instance.currentUser;
 
-                      await FirebaseFirestore.instance
-                          .collection("users")
-                          .doc(user!.uid)
-                          .set({'uid': user.uid,
-                           'email': user.email});
+                      await FirebaseFirestore.instance.collection("users").doc(user!.uid).set({
+                        'uid' : user?.uid,
+                        
+                        'name' : Name
+                      });
 
                       print("Created New Account");
                       Navigator.push(context,
