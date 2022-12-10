@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:safelane/cards/myContribution.dart';
+import 'package:safelane/maps/maps_main.dart';
 import 'package:safelane/tabs/componentshome/draggableItems.dart';
 import 'package:safelane/tabs/contribute.dart';
 import 'package:safelane/tabs/profile.dart';
-
 
 class HomePage extends StatefulWidget {
   const HomePage({Key? key}) : super(key: key);
@@ -115,7 +116,7 @@ class activities extends StatelessWidget {
               );
             },
             child: Container(
-              width: size.width*0.275,
+              width: size.width * 0.275,
               padding: EdgeInsets.fromLTRB(5.0, 0, 5.0, 0),
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(10),
@@ -138,7 +139,7 @@ class activities extends StatelessWidget {
             ),
           ),
           Container(
-            width: size.width*0.275,
+            width: size.width * 0.275,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -159,7 +160,7 @@ class activities extends StatelessWidget {
             ),
           ),
           Container(
-            width: size.width*0.275,
+            width: size.width * 0.275,
             decoration: BoxDecoration(
               borderRadius: BorderRadius.circular(10),
               color: Colors.white,
@@ -185,7 +186,7 @@ class activities extends StatelessWidget {
   }
 }
 
-class mystack extends StatelessWidget {
+class mystack extends StatefulWidget {
   const mystack({
     Key? key,
     required this.size,
@@ -194,10 +195,16 @@ class mystack extends StatelessWidget {
   final Size size;
 
   @override
+  State<mystack> createState() => _mystackState();
+}
+
+class _mystackState extends State<mystack> {
+  
+  @override
   Widget build(BuildContext context) {
     return Container(
       // color: Colors.pink,
-      height: size.height * 0.6,
+      height: widget.size.height * 0.6,
       child: Stack(
         alignment: AlignmentDirectional.center,
         // clipBehavior: Clip.none,
@@ -205,18 +212,18 @@ class mystack extends StatelessWidget {
           Positioned(
             top: 0,
             child: Container(
-              width: size.width,
-              height: size.height * 0.380,
+              width: widget.size.width,
+              height: widget.size.height * 0.380,
               color: Color(0xffECEBEB),
               // color: Colors.pink,
             ),
           ),
           Positioned(
-            top: size.height * 0.02,
+            top: widget.size.height * 0.02,
             child: Container(
               // color: Colors.black,
               alignment: Alignment.center,
-              width: size.width * 0.9,
+              width: widget.size.width * 0.9,
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -230,7 +237,7 @@ class mystack extends StatelessWidget {
                             size: 30,
                           )),
                       IconButton(
-                          onPressed: ()=>_showModalBottomSheet(context),
+                          onPressed: () => _showModalBottomSheet(context),
                           icon: Icon(
                             Icons.settings,
                             size: 30,
@@ -245,7 +252,7 @@ class mystack extends StatelessWidget {
               top: 80,
               child: Container(
                   alignment: Alignment.centerLeft,
-                  width: size.width * 0.9,
+                  width: widget.size.width * 0.9,
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
@@ -277,8 +284,8 @@ class mystack extends StatelessWidget {
                   ),
                 ],
               ),
-              height: size.height * 0.38,
-              width: size.width * 0.9,
+              height: widget.size.height * 0.38,
+              width: widget.size.width * 0.9,
               child: Padding(
                 padding: const EdgeInsets.all(20),
                 child: Column(
@@ -294,8 +301,8 @@ class mystack extends StatelessWidget {
                           children: [
                             Container(
                               margin: EdgeInsets.only(bottom: 8.0),
-                              height: size.height * 0.08,
-                              width: size.width * 0.62,
+                              height: widget.size.height * 0.08,
+                              width: widget.size.width * 0.62,
                               child: TextField(
                                 decoration: InputDecoration(
                                   labelText: 'From',
@@ -310,8 +317,8 @@ class mystack extends StatelessWidget {
                             ),
                             SizedBox(
                               // color: Colors.orange,
-                              height: size.height * 0.08,
-                              width: size.width * 0.62,
+                              height: widget.size.height * 0.08,
+                              width: widget.size.width * 0.62,
                               child: TextField(
                                 decoration: InputDecoration(
                                   labelText: 'To',
@@ -324,16 +331,23 @@ class mystack extends StatelessWidget {
                                 ),
                               ),
                             ),
+                            
                           ],
                         ),
                         SvgPicture.asset("assets/images/directionalAsset.svg"),
                       ],
                     ),
                     SizedBox(
-                      width: size.width * 0.8,
+                      width: widget.size.width * 0.8,
                       height: 60,
                       child: ElevatedButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          // Navigator.push(
+                          //   context,
+                          //   MaterialPageRoute(
+                          //       builder: (_) => MapView()),
+                          // );
+                        },
                         child: Text("Check"),
                         style: ElevatedButton.styleFrom(
                             primary: Colors.black,
@@ -352,25 +366,24 @@ class mystack extends StatelessWidget {
   }
 }
 
-
- void _showModalBottomSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: false,
-      shape: const RoundedRectangleBorder(
-          borderRadius: BorderRadius.vertical(
-        top: Radius.circular(20),
-      )),
-      builder: (context) => DraggableScrollableSheet(
-          initialChildSize: 0.6,
-          maxChildSize: 0.6,
-          minChildSize: 0.4,
-          expand: false,
-          builder: (context, scrollController) {
-            return SingleChildScrollView(
-              controller: scrollController,
-              child: const draggableItems(),
-            );
-          }),
-    );
-  }
+void _showModalBottomSheet(BuildContext context) {
+  showModalBottomSheet(
+    context: context,
+    isScrollControlled: false,
+    shape: const RoundedRectangleBorder(
+        borderRadius: BorderRadius.vertical(
+      top: Radius.circular(20),
+    )),
+    builder: (context) => DraggableScrollableSheet(
+        initialChildSize: 0.6,
+        maxChildSize: 0.6,
+        minChildSize: 0.4,
+        expand: false,
+        builder: (context, scrollController) {
+          return SingleChildScrollView(
+            controller: scrollController,
+            child: const draggableItems(),
+          );
+        }),
+  );
+}

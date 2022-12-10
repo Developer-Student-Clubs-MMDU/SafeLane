@@ -40,7 +40,15 @@ dependencies:
   google_fonts: ^3.0.1
   flutter_native_splash: ^2.2.9
   firebase_core: ^2.2.0
+  
+  #for maps
+  google_maps_flutter: ^2.0.6
+  geolocator: ^7.0.3
+  geocoding: ^2.0.0
+  flutter_polyline_points: ^1.0.0
+  image_picker: ^0.8.6
 
+  # flutter_maps: ^0.1.0
 
   
 
