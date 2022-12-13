@@ -39,7 +39,7 @@ class _HomePageState extends State<HomePage> {
                 type: BottomNavigationBarType.fixed,
                 iconSize: 30.0,
                 selectedFontSize: 0.0,
-                unselectedItemColor: Colors.grey,
+                unselectedItemColor: Color.fromRGBO(158, 158, 158, 1),
                 selectedItemColor: Colors.white,
                 backgroundColor: Colors.black,
                 currentIndex: currentIndex,
@@ -214,7 +214,7 @@ class _mystackState extends State<mystack> {
             child: Container(
               width: widget.size.width,
               height: widget.size.height * 0.380,
-              color: Color(0xffECEBEB),
+              color: Color(0xFFECEBEB),
               // color: Colors.pink,
             ),
           ),
@@ -350,7 +350,7 @@ class _mystackState extends State<mystack> {
                         },
                         child: Text("Check"),
                         style: ElevatedButton.styleFrom(
-                            primary: Colors.black,
+                            backgroundColor: Colors.black,
                             shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(10))),
                       ),

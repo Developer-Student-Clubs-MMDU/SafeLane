@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:safelane/authentication/login.dart';
+import 'package:safelane/tabs/profile.dart';
 import 'draggableItemsModel.dart';
 
 class draggableItems extends StatelessWidget {
@@ -30,7 +31,10 @@ class draggableItems extends StatelessWidget {
               height: 15,
             ),
             SettingButtons(
-              onTap: () {},
+              onTap: () {Navigator.push(
+                context,
+                MaterialPageRoute(builder: (_) => Profile()),
+              );},
               child: Icon(Icons.person),
               textLabel: 'My Profile',
             ),

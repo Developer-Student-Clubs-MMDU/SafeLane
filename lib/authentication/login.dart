@@ -1,6 +1,9 @@
+import 'dart:js';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 import 'package:safelane/authentication/components/text_field.dart';
 import 'package:safelane/authentication/fogotpassword.dart';
 import 'package:safelane/authentication/signup.dart';
@@ -8,6 +11,29 @@ import 'package:safelane/tabs/home.dart';
 
 class loginScreen extends StatelessWidget {
   const loginScreen({Key? key}) : super(key: key);
+
+  // final FirebaseAuth auth = FirebaseAuth.instance;
+
+  // void googleSignIn() async {
+  //   final GoogleSignIn googleSignIn = GoogleSignIn();
+  //   final GoogleSignInAccount? googleSignInAccount =
+  //       await googleSignIn.signIn();
+
+  //   if (googleSignInAccount != null) {
+  //     final GoogleSignInAuthentication googleSignInAuthentication =
+  //         await googleSignInAccount.authentication;
+  //     final AuthCredential authCredential = GoogleAuthProvider.credential(
+  //       idToken: googleSignInAuthentication.idToken,
+  //       accessToken: googleSignInAuthentication.accessToken,
+  //     );
+
+  //     UserCredential userCredential =
+  //         await auth.signInWithCredential(authCredential);
+  //     User? user = userCredential.user;
+  //     Navigator.pushReplacement(
+  //         context, MaterialPageRoute(builder: ((context) => const HomePage())));
+  //   }
+  // }
 
   @override
   Widget build(BuildContext context) {
@@ -93,9 +119,7 @@ class loginScreen extends StatelessWidget {
                             context,
                             MaterialPageRoute(
                                 builder: (context) => HomePage()));
-                      }).onError((error, stackTrace) {
-                        
-                      });
+                      }).onError((error, stackTrace) {});
                     },
                     child: Text("Get in"),
                   )
@@ -126,39 +150,39 @@ class loginScreen extends StatelessWidget {
                 ),
               ],
             ),
-            SizedBox(
-              height: 35,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(right: 25),
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xff7A7A7A),
-                  ),
-                  child: Icon(
-                    Icons.phone_android,
-                    color: Colors.white,
-                  ),
-                ),
-                Container(
-                  height: 40,
-                  width: 40,
-                  decoration: BoxDecoration(
-                    shape: BoxShape.circle,
-                    color: Color(0xff7A7A7A),
-                  ),
-                  child: Icon(
-                    Icons.g_mobiledata,
-                    color: Colors.white,
-                  ),
-                ),
-              ],
-            ),
+            // SizedBox(
+            //   height: 35,
+            // ),
+            // Row(
+            //   mainAxisAlignment: MainAxisAlignment.center,
+            //   children: [
+            //     Container(
+            //       margin: EdgeInsets.only(right: 25),
+            //       height: 40,
+            //       width: 40,
+            //       decoration: BoxDecoration(
+            //         shape: BoxShape.circle,
+            //         color: Color(0xff7A7A7A),
+            //       ),
+            //       child: Icon(
+            //         Icons.phone_android,
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //     Container(
+            //       height: 40,
+            //       width: 40,
+            //       decoration: BoxDecoration(
+            //         shape: BoxShape.circle,
+            //         color: Color(0xff7A7A7A),
+            //       ),
+            //       child: Icon(
+            //         Icons.g_mobiledata,
+            //         color: Colors.white,
+            //       ),
+            //     ),
+            //   ],
+            // ),
             SizedBox(
               height: 35,
             ),

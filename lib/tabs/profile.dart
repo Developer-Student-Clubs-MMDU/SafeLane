@@ -14,7 +14,7 @@ class _ProfileScreenState extends State<Profile> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: const Color(0xffdee2fe),
+      backgroundColor: Color(0xFFECEBEB),
       body: SizedBox(
         width: double.infinity,
         child: Column(
